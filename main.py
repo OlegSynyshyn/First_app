@@ -36,21 +36,28 @@ class SecondScr(Screen):
         super().__init__(name=name)
 
 
-        textinput = TextInput(text='Hello world', multiline=False)
+        self.textinput = TextInput(multiline=False)
 
-        text = Label(text="Результат:")
+        self.text = Label(text="Результат:")
 
 
         btn = Button(text="Назад")
 
         layout = BoxLayout(orientation= 'vertical', spacing="20sp")
-        layout.add_widget(text)
-        layout.add_widget(textinput)
+        layout.add_widget(self.text)
+        layout.add_widget(self.textinput)
         layout.add_widget(btn)
-        btn.on_press = self.next
+        btn.on_press = self.back
         self.add_widget(layout)
+        self.textinput.bind(text=self.convert)
+
+    def convert(self, *args):
+        amount = float(self.textinput.text)
+        result = round(amount * 41)
+        self.text.text = f'{result} грн'
+
         
-    def next(self):
+    def back(self):
         self.manager.transition.direction = 'right'
         self.manager.current = 'first'
 
