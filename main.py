@@ -29,7 +29,7 @@ class SecondScr(Screen):
         self.manager.transition.direction = 'right'
         self.manager.current = 'first'
 
-class MyConvertorApp(App):
+class ConvertorApp(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(FirstScr())
@@ -38,5 +38,5 @@ class MyConvertorApp(App):
         # sm.current = 'second'
         return sm
 
-app = MyConvertorApp()
+app = ConvertorApp()
 app.run()
